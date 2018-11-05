@@ -1,13 +1,13 @@
 'use strict';
 
 var _ = require('underscore');
-var mysql = require('mysql');
+var mysql = require('mysql2');
 var path = require('path');
 var util = require('util');
 
 var debug = {
-	log: require('debug')('express-mysql-session:log'),
-	error: require('debug')('express-mysql-session:error')
+	log: require('debug')('express-mysql2-session:log'),
+	error: require('debug')('express-mysql2-session:error')
 };
 
 module.exports = function(session) {

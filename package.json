@@ -1,5 +1,5 @@
 {
-  "name": "express-mysql-session",
+  "name": "express-mysql2-session",
   "description": "A MySQL session store for express.js",
   "version": "2.1.0",
   "main": "index.js",
@@ -22,18 +22,18 @@
   },
   "license": "MIT",
   "dependencies": {
-    "debug": "4.1.0",
-    "express-session": "1.15.6",
-    "mysql": "2.16.0",
+    "debug": "4.1.1",
+    "express-session": "^1.15.6",
+    "mysql2": "^1.6.5",
     "underscore": "1.9.1"
   },
   "devDependencies": {
-    "async": "2.6.1",
+    "async": "2.6.2",
     "benchmark": "2.1.4",
     "chai": "4.2.0",
-    "cookie-parser": "1.4.3",
+    "cookie-parser": "1.4.4",
     "express": "4.16.4",
-    "mysql2": "1.6.4"
+    "mysql2": "1.6.5"
   },
   "readmeFilename": "readme.md",
   "bugs": {
