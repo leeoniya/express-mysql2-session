@@ -179,15 +179,7 @@ module.exports = function(session) {
 				return cb(null, null);
 			}
 
-			try {
-				var session = JSON.parse(row.data);
-			} catch (error) {
-				debug.error('Failed to parse data for session (' + session_id + ')');
-				debug.error(error);
-				return cb(error);
-			}
-
-			cb(null, session);
+			cb(null, row.data);
 		});
 	};
 
@@ -216,8 +208,6 @@ module.exports = function(session) {
 		// Use whole seconds here; not milliseconds.
 		expires = Math.round(expires.getTime() / 1000);
 
-		data = JSON.stringify(data);
-
 		var sql = 'INSERT INTO ?? (??, ??, ??) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE ?? = VALUES(??), ?? = VALUES(??)';
 
 		var params = [
@@ -227,7 +217,7 @@ module.exports = function(session) {
 			this.options.schema.columnNames.data,
 			session_id,
 			expires,
-			data,
+			JSON.stringify(data),
 			this.options.schema.columnNames.expires,
 			this.options.schema.columnNames.expires,
 			this.options.schema.columnNames.data,
@@ -366,14 +356,7 @@ module.exports = function(session) {
 			}
 
 			var sessions = _.chain(rows).map(function(row) {
-				try {
-					var data = JSON.parse(row.data);
-				} catch (error) {
-					debug.error('Failed to parse data for session (' + row.session_id + ')');
-					debug.error(error);
-					return null;
-				}
-				return [row.session_id, data];
+				return [row.session_id, row.data];
 			}).compact().object().value();
 
 			cb && cb(null, sessions);

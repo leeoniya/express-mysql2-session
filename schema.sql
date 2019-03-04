@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `sessions` (
-  `session_id` varchar(128) COLLATE utf8mb4_bin NOT NULL,
-  `expires` int(11) unsigned NOT NULL,
-  `data` text COLLATE utf8mb4_bin,
+  `session_id` VARCHAR(128) NOT NULL,
+  `expires` INT(11) UNSIGNED NOT NULL,
+  `data` JSON,
   PRIMARY KEY (`session_id`)
-) ENGINE=InnoDB
+) ENGINE=InnoDB COLLATE='utf8_general_ci'
